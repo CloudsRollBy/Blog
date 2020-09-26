@@ -76,12 +76,10 @@
                     <a  role="button" 
                         href="{% url 'article:article_list' %}?column={{ article.column.id }}"
                         class="btn btn-sm mb-2
-                            {% if article.column.title == 'Django' %}
+                            {% if article.column.title == '编程' %}
                                 btn-success
-                            {% elif article.column.title == 'Java' %}
+                            {% elif article.column.title == '读书' %}
                                 btn-danger
-                            {% elif article.column.title == 'HTML' %}
-                                btn-warning
                             {% endif %}
                         "
                     >

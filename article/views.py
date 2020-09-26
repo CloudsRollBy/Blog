@@ -40,9 +40,16 @@ def article_list(request):
     order = request.GET.get('order')
     column = request.GET.get('column')
     tag = request.GET.get('tag')
+    find_column = request.GET.get('find_column')
 
     # 初始化查询集
     article_list = ArticlePost.objects.all()
+    column_list = ArticleColumn.objects.all()
+    find_column_id = None
+    for i in column_list:
+        if i.title==find_column:
+            find_column_id = i.id
+            break
 
     # 搜索查询集
     if search:
@@ -57,6 +64,8 @@ def article_list(request):
     # 栏目查询集
     if column is not None and column.isdigit():
         article_list = article_list.filter(column=column)
+    if find_column_id:
+        article_list = article_list.filter(column=find_column_id)
 
     # 标签查询集
     if tag and tag != 'None':
@@ -254,6 +263,9 @@ def article_update(request, id):
     else:
         # 创建表单类实例
         article_post_form = ArticlePostForm()
+
+        # article_post_form data = article.body.getData()
+        # article_post_form.body = article.body
 
         # 文章栏目
         columns = ArticleColumn.objects.all()

@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'userprofile',
     'comment',
     'notice',
+    'mdeditor',
 ]
 
 MIDDLEWARE = [

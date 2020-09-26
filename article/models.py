@@ -9,6 +9,8 @@ from django.urls import reverse
 # Django-taggit
 from taggit.managers import TaggableManager
 
+from mdeditor.fields import MDTextFormField, MDTextField
+
 # 处理图片
 from PIL import Image
 
@@ -60,7 +62,10 @@ class ArticlePost(models.Model):
 
     # 文章正文。
     # 保存大量文本使用 TextField
-    body = models.TextField()
+    # body = models.TextField()
+    body = MDTextField()
+
+    # md_content = MDTextFormField()
 
     # 浏览量
     total_views = models.PositiveIntegerField(default=0)
